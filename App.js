@@ -3,8 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar
 } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import Nav from './components/Nav.js';
 
 export default class App extends Component {
   render() {
@@ -14,9 +15,20 @@ export default class App extends Component {
           *LOGO*
         </Text>
       </View>
+      // <Nav></Nav>
     );
   }
 }
+
+const bottomTabNavigator = createBottomTabNavigator(
+  {
+    Home: HomeScreen,
+    Explore: ExploreScreen,
+  },
+  {
+    initialRouteName: 'Home'
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
