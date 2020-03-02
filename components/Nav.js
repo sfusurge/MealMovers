@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -28,7 +28,7 @@ export default class Nav extends React.Component {
         <Tab.Navigator>
           <Tab.Screen name="Contact" component={ContactScreen} />
           <Tab.Screen name="Home" component={HomeScreen} /> 
-          {/* This should eventually be replaced by the home screen for giver/receiver */}
+          {/* ^ This should eventually be replaced by the home screen for giver/receiver */}
           <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>
