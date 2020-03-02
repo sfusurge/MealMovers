@@ -1,19 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import Nav from './components/Nav.js';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>test</Text>
-    </View>
+    <Nav></Nav>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
