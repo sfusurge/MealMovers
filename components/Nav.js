@@ -18,7 +18,7 @@ function HomeScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default class Nav extends Component {
+export default class Nav extends React.Component {
   render () {
     return (
       <NavigationContainer>
