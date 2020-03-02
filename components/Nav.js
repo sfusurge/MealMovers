@@ -25,7 +25,7 @@ export default class Nav extends React.Component {
   render () {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName="Home">
           <Tab.Screen name="Contact" component={ContactScreen} />
           <Tab.Screen name="Home" component={HomeScreen} /> 
           {/* ^ This should eventually be replaced by the home screen for giver/receiver */}
