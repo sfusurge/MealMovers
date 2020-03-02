@@ -1,10 +1,13 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import Styles from '../Styles.js';
 
 export function ContactScreen() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Contact!</Text>
+        <View style={Styles.container}>
+            <Text style={Styles.logo}>
+                Contact!
+            </Text>
         </View>
     );
   }

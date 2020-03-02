@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Styles from '../Styles.js';
 import { ContactScreen } from './Contact.js';
 import { ProfileScreen } from './Profile.js';
 
+// Modified from https://reactnavigation.org/docs/tab-based-navigation
+
 function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>
+    <View style={Styles.container}>
+      <Text style={Styles.logo}>
         *LOGO*
       </Text>
     </View>
@@ -24,23 +27,11 @@ export default class Nav extends React.Component {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="Contact" component={ContactScreen} />
-          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Home" component={HomeScreen} /> 
+          {/* This should eventually be replaced by the home screen for giver/receiver */}
           <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#4F6D7A',
-  },
-  logo: {
-    fontSize: 80,
-    textAlign: 'center',
-    margin: 40,
-    color: '#F5FCFF',
-  },
-});
