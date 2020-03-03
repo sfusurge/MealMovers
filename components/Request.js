@@ -4,7 +4,7 @@ import Nav from './Nav.js'
 import Styles from '../Styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function RequestDelivery() {
+export function RequestDelivery() {
     return (
         <View>
             <Text style={Styles.requestText}>
