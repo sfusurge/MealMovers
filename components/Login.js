@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView   } from 'react-native';
-import LoginForm from './LoginForm'
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput  } from 'react-native';
 
-export default class Login extends Component {
-  render() {
+import { useNavigation } from '@react-navigation/native';
+
+export default function Login({navigation}){
+
     return (
       <KeyboardAvoidingView behavior = "padding" style={styles.container}>
           <View style = {styles.logoContainer}>
@@ -13,12 +14,42 @@ export default class Login extends Component {
                <Text style = {styles.title}> Meal Movers</Text>
           </View>
           <View style = {styles.formContainer}>
-              <LoginForm />
+            <View style={styles.loginContainer}>
+            <TextInput
+                placeholder = "username or email"
+                returnKeyType = "next"
+                onSubmitEditing = {()=>this.passwordinput.focus()}
+                keyboardType = "email-address"
+                style = {styles.input}
+                autoCapitalize = "none"
+                autoCorrect = {false}
+                />
+                
+                <TextInput
+                placeholder = "password"
+                returnKeyType = "go"
+                secureTextEntry
+                style = {styles.input}
+                //ref={((input) => this.passwordinput = input)}
+                />   
+                <TouchableOpacity style = {styles.buttonContainer}>
+                    <Text style = {styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity>
+
+                <View style = {styles.signUpBox}>
+                <Text style = {styles.signUps}> Don't have an Account. </Text>
+                <TouchableOpacity onPress={()=> {navigation.navigate('SignUp')}}><Text> Sign Up Here!</Text>
+                </TouchableOpacity>
+                </View>
+                       
+            </View>
           </View>
+          
       </KeyboardAvoidingView>
     );
-  }
+  
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -44,5 +75,38 @@ const styles = StyleSheet.create({
         width: 190,
         textAlign : "center",
         opacity : 0.6
+    },
+    loginContainer: {
+        padding: 20
+    },
+    signUpBox: {
+        alignItems:"flex-end",
+        justifyContent:"center",
+        paddingVertical: 1, 
+        flexDirection: 'row'
+    },
+    input:{
+        height: 40,
+        backgroundColor: '#CEFC9F',
+        marginBottom : 20,
+        paddingHorizontal: 10,
+    },
+    buttonContainer:{
+        backgroundColor: '#75BB09',
+        paddingVertical: 15
+    },
+    buttonText:{
+        textAlign: 'center',
+        fontWeight: '900'  
+    },
+    signUps:{
+        color: 'rgba(0,0,0, 0.7)',
+        fontSize: 16
+    },
+    signUpsBtn:{
+      color: '#000000',
+      fontSize: 16,
+      fontWeight: "500"
     }
 })
+

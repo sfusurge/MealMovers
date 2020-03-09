@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Routes from './Routes'
+import AppNavigator from './AppNavigator'
 
 export default function App() {
   return (
-    <Routes></Routes> 
+    <AppNavigator></AppNavigator> 
   );
 }
