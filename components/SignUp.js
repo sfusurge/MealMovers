@@ -13,31 +13,79 @@ export default function SignUp({navigation}){
             </View>
             <View style = {styles.formContainer}>
               <View style={styles.loginContainer}>
-                <Text> Name of Organization</Text>
-                <TextInput
-                    placeholder = "username or email"
-                    returnKeyType = "next"
-                    onSubmitEditing = {()=>this.passwordinput.focus()}
-                    keyboardType = "email-address"
-                    style = {styles.input}
-                    autoCapitalize = "none"
-                    autoCorrect = {false}
-                    />
-                    
+                    <View style = {styles.textContainer}>
+                        <Text style = {styles.inputNameText}>
+                            Name of Organization:   
+                        </Text>
+                        <TextInput
+                            placeholder = "Name of Organization"
+                            returnKeyType = "next"
+                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            keyboardType = "email-address"
+                            style = {styles.input}
+                            autoCapitalize = "none"
+                            autoCorrect = {false}
+                            />
+                    </View>
+                    <View style = {styles.textContainer}>
+                        <Text style = {styles.inputNameText}>
+                            Name of Organization:   
+                        </Text>
+                        <TextInput
+                            placeholder = "Name of Organization"
+                            returnKeyType = "next"
+                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            keyboardType = "email-address"
+                            style = {styles.input}
+                            autoCapitalize = "none"
+                            autoCorrect = {false}
+                            />
+                    </View>
+                    <View style = {styles.textContainer}>
+                        <Text style = {styles.inputNameText}>
+                            Name of Organization:   
+                        </Text>
+                        <TextInput
+                            placeholder = "Name of Organization"
+                            returnKeyType = "next"
+                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            keyboardType = "email-address"
+                            style = {styles.input}
+                            autoCapitalize = "none"
+                            autoCorrect = {false}
+                            />
+                    </View>
+                    <View style = {styles.textContainer}>
+                        <Text style = {styles.inputNameText}>
+                            Name of Organization:   
+                        </Text>
+                        <TextInput
+                            placeholder = "Name of Organization"
+                            returnKeyType = "next"
+                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            keyboardType = "email-address"
+                            style = {styles.input}
+                            autoCapitalize = "none"
+                            autoCorrect = {false}
+                            />
+                    </View>
                     <TextInput
-                    placeholder = "password"
-                    returnKeyType = "go"
-                    secureTextEntry
-                    style = {styles.input}
-                    //ref={((input) => this.passwordinput = input)}
-                    />   
+                        placeholder = "password"
+                        returnKeyType = "go"
+                        secureTextEntry
+                        style = {styles.input}
+                        //ref={((input) => this.passwordinput = input)}
+                    />  
+                    <TextInput>
+                        placeholder = "Address"
+                    </TextInput> 
                     <TouchableOpacity style = {styles.buttonContainer}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
     
                     <View style = {styles.signUpBox}>
                     <Text style = {styles.signUps}> Already have an account? </Text>
-                    <TouchableOpacity onPress={()=> {navigation.navigate('SignUp')}}><Text> Log In</Text>
+                    <TouchableOpacity onPress={()=> {navigation.navigate('Login')}}><Text> Log In</Text>
                     </TouchableOpacity>
                     </View>
                             
@@ -78,7 +126,6 @@ const styles = StyleSheet.create({
     signUpBox: {
         alignItems:"flex-end",
         justifyContent:"center",
-         
         flexDirection: 'row'
     },
     input:{
@@ -103,5 +150,14 @@ const styles = StyleSheet.create({
       color: '#000000',
       fontSize: 16,
       fontWeight: "500"
-    }
+    },
+    textContainer:{
+        alignItems: "flex-end",
+        justifyContent:"center",
+        flexDirection: 'row'
+    },
+    inputNameText:{
+        textAlign: 'center',
+          
+    },
 })
