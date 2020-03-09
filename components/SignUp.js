@@ -12,11 +12,9 @@ export default function SignUp({navigation}){
                  <Text style = {styles.title}> Meal Movers</Text>
             </View>
             <View style = {styles.formContainer}>
-              <View style={styles.loginContainer}>
-                    <View style = {styles.textContainer}>
-                        <Text style = {styles.inputNameText}>
-                            Name of Organization:   
-                        </Text>
+              <View style={styles.signUpContainer}>
+                    
+                        
                         <TextInput
                             placeholder = "Name of Organization"
                             returnKeyType = "next"
@@ -26,13 +24,10 @@ export default function SignUp({navigation}){
                             autoCapitalize = "none"
                             autoCorrect = {false}
                             />
-                    </View>
-                    <View style = {styles.textContainer}>
-                        <Text style = {styles.inputNameText}>
-                            Name of Organization:   
-                        </Text>
+                   
+                    
                         <TextInput
-                            placeholder = "Name of Organization"
+                            placeholder = "E-mail"
                             returnKeyType = "next"
                             onSubmitEditing = {()=>this.passwordinput.focus()}
                             keyboardType = "email-address"
@@ -40,13 +35,10 @@ export default function SignUp({navigation}){
                             autoCapitalize = "none"
                             autoCorrect = {false}
                             />
-                    </View>
-                    <View style = {styles.textContainer}>
-                        <Text style = {styles.inputNameText}>
-                            Name of Organization:   
-                        </Text>
+                   
+                    
                         <TextInput
-                            placeholder = "Name of Organization"
+                            placeholder = "Phone number"
                             returnKeyType = "next"
                             onSubmitEditing = {()=>this.passwordinput.focus()}
                             keyboardType = "email-address"
@@ -54,13 +46,9 @@ export default function SignUp({navigation}){
                             autoCapitalize = "none"
                             autoCorrect = {false}
                             />
-                    </View>
-                    <View style = {styles.textContainer}>
-                        <Text style = {styles.inputNameText}>
-                            Name of Organization:   
-                        </Text>
+ 
                         <TextInput
-                            placeholder = "Name of Organization"
+                            placeholder = "Address"
                             returnKeyType = "next"
                             onSubmitEditing = {()=>this.passwordinput.focus()}
                             keyboardType = "email-address"
@@ -68,17 +56,23 @@ export default function SignUp({navigation}){
                             autoCapitalize = "none"
                             autoCorrect = {false}
                             />
-                    </View>
+                  
                     <TextInput
-                        placeholder = "password"
+                        placeholder = "Password"
                         returnKeyType = "go"
                         secureTextEntry
                         style = {styles.input}
                         //ref={((input) => this.passwordinput = input)}
-                    />  
-                    <TextInput>
-                        placeholder = "Address"
-                    </TextInput> 
+                    /> 
+
+                    <TextInput
+                        placeholder = "Confirm Password"
+                        returnKeyType = "go"
+                        secureTextEntry
+                        style = {styles.input}
+                        //ref={((input) => this.passwordinput = input)}
+                    />   
+                    
                     <TouchableOpacity style = {styles.buttonContainer}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
@@ -120,8 +114,8 @@ const styles = StyleSheet.create({
         textAlign : "center",
         opacity : 0.6
     },
-    loginContainer: {
-        padding: 20
+    signUpContainer: {
+        padding: 40
     },
     signUpBox: {
         alignItems:"flex-end",
@@ -132,7 +126,7 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: '#CEFC9F',
         marginBottom : 20,
-        paddingHorizontal: 10,
+        padding: 10
     },
     buttonContainer:{
         backgroundColor: '#75BB09',
@@ -151,11 +145,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontWeight: "500"
     },
-    textContainer:{
-        alignItems: "flex-end",
-        justifyContent:"center",
-        flexDirection: 'row'
-    },
+    
     inputNameText:{
         textAlign: 'center',
           

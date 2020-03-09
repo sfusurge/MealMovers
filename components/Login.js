@@ -32,7 +32,7 @@ export default function Login({navigation}){
                 style = {styles.input}
                 //ref={((input) => this.passwordinput = input)}
                 />   
-                <TouchableOpacity style = {styles.buttonContainer}>
+                <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {navigation.navigate('Nav')}}>
                     <Text style = {styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity>
 

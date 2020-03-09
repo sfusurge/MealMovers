@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Nav from './components/Nav'
 import { useNavigation } from '@react-navigation/native';
 //import SignUp from 'SignUp'
 
@@ -19,6 +20,7 @@ function GoToButton({ screenName }) {
 const AppNavigator = createStackNavigator({
     Login: {screen: Login},
     SignUp: {screen: SignUp},
+    Nav: {screen: Nav}
     
     
     },{ headerMode: 'none' },
