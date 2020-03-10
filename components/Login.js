@@ -4,8 +4,9 @@ import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, 
 import { useNavigation } from '@react-navigation/native';
 
 export default function Login({navigation}){
-
+    var passwordinput = {};
     return (
+        
       <KeyboardAvoidingView behavior = "padding" style={styles.container}>
           <View style = {styles.logoContainer}>
               <Image
@@ -18,7 +19,7 @@ export default function Login({navigation}){
             <TextInput
                 placeholder = "username or email"
                 returnKeyType = "next"
-                onSubmitEditing = {()=>this.passwordinput.focus()}
+                onSubmitEditing = {()=> passwordinput.focus()}
                 keyboardType = "email-address"
                 style = {styles.input}
                 autoCapitalize = "none"
@@ -30,7 +31,7 @@ export default function Login({navigation}){
                 returnKeyType = "go"
                 secureTextEntry
                 style = {styles.input}
-                //ref={((input) => this.passwordinput = input)}
+                ref={((input) => passwordinput = input)}
                 />   
                 <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {navigation.navigate('Nav')}}>
                     <Text style = {styles.buttonText}>LOGIN</Text>

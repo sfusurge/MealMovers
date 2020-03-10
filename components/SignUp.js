@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, Image, StyleSheet, View, TextInput, TouchableOpacity, Text, Navigitor} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Actions } from 'react-native-router-flux';
 
 export default function SignUp({navigation}){
+    var emailInput = "" 
+    var passwordInput = ""
+    var addressInput = ""
+    var numberInput = ""
+    var passwordInput = ""
+    var confirmPasswordInput = ""
+    
     return (
-        <KeyboardAvoidingView behavior = "padding" style={styles.container}>
+        <KeyboardAwareScrollView
+        style={{ backgroundColor: '#4c69a5' }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+        scrollEnabled={true}
+        >
             <View style = {styles.logoContainer}>
                 <Image
                  style = {styles.logo}
@@ -18,7 +31,7 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Name of Organization"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            onSubmitEditing = {()=> emailInput.focus()}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -29,7 +42,8 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "E-mail"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            onSubmitEditing = {()=> numberInput.focus()}
+                            ref={((input) => emailInput = input)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -40,7 +54,8 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Phone number"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            onSubmitEditing = {()=> addressInput.focus()}
+                            ref={((input) => numberInput = input)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -50,7 +65,8 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Address"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=>this.passwordinput.focus()}
+                            onSubmitEditing = {()=> passwordInput.focus()}
+                            ref={((input) => addressInput = input)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -59,10 +75,13 @@ export default function SignUp({navigation}){
                   
                     <TextInput
                         placeholder = "Password"
-                        returnKeyType = "go"
+                        returnKeyType = "next"
                         secureTextEntry
+                        onSubmitEditing = {()=> confirmPasswordInput.focus()}
+                        ref={((input) => passwordInput = input)}
                         style = {styles.input}
-                        //ref={((input) => this.passwordinput = input)}
+                        
+                        
                     /> 
 
                     <TextInput
@@ -70,7 +89,7 @@ export default function SignUp({navigation}){
                         returnKeyType = "go"
                         secureTextEntry
                         style = {styles.input}
-                        //ref={((input) => this.passwordinput = input)}
+                        ref={((input) => confirmPasswordInput = input)}
                     />   
                     
                     <TouchableOpacity style = {styles.buttonContainer}>
@@ -86,7 +105,7 @@ export default function SignUp({navigation}){
                 </View>
             </View>
             
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
     );   
 }
 const styles = StyleSheet.create({
