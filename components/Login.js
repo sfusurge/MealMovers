@@ -55,7 +55,7 @@ export default function Login({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex : 1,
-        backgroundColor : '#B3FE78' 
+        backgroundColor : '#7F7F7F' 
         
     },
     logoContainer:{
@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
     },
     input:{
         height: 40,
-        backgroundColor: '#CEFC9F',
+        backgroundColor: '#C5C5C5',
         marginBottom : 20,
         paddingHorizontal: 10,
     },
     buttonContainer:{
-        backgroundColor: '#75BB09',
+        backgroundColor: '#EEEBEB',
         paddingVertical: 15
     },
     buttonText:{

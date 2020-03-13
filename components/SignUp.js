@@ -111,7 +111,7 @@ export default function SignUp({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex : 1,
-        backgroundColor : '#B3FE78' 
+        backgroundColor : '#C5C5C5' 
         
     },
     logoContainer:{

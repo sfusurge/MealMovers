@@ -12,7 +12,6 @@ function GoToButton({ screenName }) {
   
     return (
       <TouchableOpacity
-        
         onPress={() => navigation.navigate(screenName)}
       />
     );
