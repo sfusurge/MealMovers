@@ -15,17 +15,20 @@ export default function ConfirmEmail({navigation}){
                source = {require('./Images/UIHere.png')}/>
                <Text style = {styles.title}> Meal Movers</Text>
           </View>
-
-          <View>
-              <Text>Please Verify your Email</Text>
-          </View>
-        
-          <View>
-                <Text>Didn't get an Email</Text>
+            
+            <View style = {styles.formContainer}>
+                <Text style = {styles.centerText}>Please Verify your Email</Text>
+            </View>
+            
+            <View style = {styles.resendContainer}>
+                <Text style = {styles.resendText}>Didn't get an Email?</Text>
                 <TouchableOpacity>
-                    Click here to Resend
+                    <Text style = {styles.confirmEmailText}>
+                        Click here to Resend
+                    </Text>
                 </TouchableOpacity>
-          </View>
+            </View>
+            
         
         </View>
     );
@@ -46,4 +49,29 @@ const styles = StyleSheet.create({
         width : 100,
         height : 100
     },
+    formContainer:{
+        justifyContent: 'center',
+        flexGrow: 1,
+        alignItems: 'center'
+        
+    },
+    centerText:{   
+        marginBottom: 150,
+        fontSize: 25,
+        fontWeight: "200"
+    },
+    resendContainer:{
+        flex: 0.4,
+        
+    },
+    resendText:{
+        fontWeight: "300",
+        textAlign: 'center',
+        fontSize: 20
+    },
+    confirmEmailText:{
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: "bold"
+    }
 })

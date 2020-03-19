@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     },
     
     inputNameText:{
-        textAlign: 'center',
-          
+        textAlign: 'center',    
     },
 })
