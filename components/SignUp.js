@@ -92,7 +92,7 @@ export default function SignUp({navigation}){
                         ref={((input) => confirmPasswordInput = input)}
                     />   
                     
-                    <TouchableOpacity style = {styles.buttonContainer}>
+                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {navigation.navigate('ConfirmEmail')}}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
     
