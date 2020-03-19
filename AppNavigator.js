@@ -6,6 +6,7 @@ import SignUp from './components/SignUp'
 import ConfirmEmail from './components/ConfirmEmail';
 import Nav from './components/Nav'
 import { useNavigation } from '@react-navigation/native';
+import Onboard from './components/Onboard';
 
 //import SignUp from 'SignUp'
 
@@ -22,7 +23,8 @@ const AppNavigator = createStackNavigator({
     Login: {screen: Login},
     SignUp: {screen: SignUp},
     Nav: {screen: Nav},
-    ConfirmEmail: {screen: ConfirmEmail}
+    ConfirmEmail: {screen: ConfirmEmail},
+    Onboard: {screen: Onboard}
     
     
     },{ headerMode: 'none' },
