@@ -1,15 +1,13 @@
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform  } from 'react-native'
-import React, { Component } from 'react';
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform, Button  } from 'react-native'
+import React, { Component, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps'
 
 //import {request,PERMISSIONS} from 'react-native-permissions'
 
 export default function Map({navigation}) {
-    let thisLatitude
-    let thisLongitude
-    var _map
-
+    const [thisLatitude, setLatitude] = useState(0)
+    const [thisLongitude, setLongitude] = useState(0);
     
 
     // requestLocationPermission = async () => {
@@ -22,13 +20,24 @@ export default function Map({navigation}) {
     //     } 
     // }
 
-    const locateCurrentPos = (thisLatitude,thisLongitude) => {
+    const handleNameInput = e => {
+        setName(e.target.value);
+    };
+
+    const locateCurrentPos = () => {
         navigator.geolocation.getCurrentPosition(
             position => {
                 console.log("Check this statement")
-                console.log(JSON.stringify(position))
-                thisLatitude = position.coords.latitude,
-                thisLongitude = position.coords.longitude                
+                //console.log(JSON.stringify(position))
+                
+                const newLatitude = position.coords.latitude
+                const newLongitude = position.coords.longitude
+                console.log(thisLatitude)
+                setLatitude(newLatitude)
+                setLongitude(newLongitude)
+                
+                
+                        
             }   
         )
     }
@@ -37,8 +46,15 @@ export default function Map({navigation}) {
 
 
     return(
+    
         <View style={styles.container}>
-            <Text>{thisLatitude}</Text>            
+            <Text>You clicked {thisLatitude} times.</Text>
+            <Button
+				onPress={locateCurrentPos}
+				title="Click me"
+				color="red"
+				accessibilityLabel="Click this button to increase count"
+			/>
             <MapView 
             provider = {PROVIDER_GOOGLE} 
             //ref = {map=> _map = map}
@@ -48,7 +64,7 @@ export default function Map({navigation}) {
                 latitude: thisLatitude,
                 longitude: thisLongitude,
                 latitudeDelta: 0.09,
-                latitudeDelta: 0.035
+                longitudeDelta: 0.035
             }}>
                 <Marker
                 coordinate  = {{latitude: 49.278094, longitude: -122.919883}}
@@ -64,8 +80,8 @@ export default function Map({navigation}) {
 
                 </Marker>
             </MapView>
-
         </View>
+       
     )
 }
 
