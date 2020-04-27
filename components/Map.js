@@ -1,14 +1,15 @@
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform, Button  } from 'react-native'
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform, Button, Linking  } from 'react-native'
 import React, { Component, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps'
+import * as Permissions from 'expo-permissions';
 
-//import {request,PERMISSIONS} from 'react-native-permissions'
 
-export default function Map({navigation}) {
+export default function Map({navigation}) { 
     const [thisLatitude, setLatitude] = useState(0)
-    const [thisLongitude, setLongitude] = useState(0);
-    
+    const [thisLongitude, setLongitude] = useState(0)
+    //const [status, setStatus] = useState(null)
+    //const [errorMsg, setErrorMessage] = useState(null)
 
     // requestLocationPermission = async () => {
     //     if (Platform.OS === 'ios'){
@@ -20,9 +21,18 @@ export default function Map({navigation}) {
     //     } 
     // }
 
-    const handleNameInput = e => {
-        setName(e.target.value);
-    };
+    const requestLocationPermission = async () => {  
+        const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION)
+    
+        
+        if (status === 'granted'){
+            return 2
+        }
+        else{
+            throw new Error('Location permission not granted')
+        }    
+
+    }
 
     const locateCurrentPos = () => {
         navigator.geolocation.getCurrentPosition(
@@ -49,12 +59,9 @@ export default function Map({navigation}) {
     
         <View style={styles.container}>
             <Text>You clicked {thisLatitude} times.</Text>
-            <Button
-				onPress={locateCurrentPos}
-				title="Click me"
-				color="red"
-				accessibilityLabel="Click this button to increase count"
-			/>
+            <View>{locateCurrentPos()}</View>
+            
+				
             <MapView 
             provider = {PROVIDER_GOOGLE} 
             //ref = {map=> _map = map}
