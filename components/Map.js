@@ -21,12 +21,14 @@ export default function Map({navigation}) {
     //     } 
     // }
 
-    const requestLocationPermission = async () => {  
+    const componentWillMount = () => {
+        requestLocationPermission()
+    }
+    async function requestLocationPermission() {  
         const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION)
     
-        
         if (status === 'granted'){
-            return 2
+            return locateCurrentPos()
         }
         else{
             throw new Error('Location permission not granted')
@@ -45,9 +47,7 @@ export default function Map({navigation}) {
                 console.log(thisLatitude)
                 setLatitude(newLatitude)
                 setLongitude(newLongitude)
-                
-                
-                        
+             
             }   
         )
     }
@@ -59,7 +59,7 @@ export default function Map({navigation}) {
     
         <View style={styles.container}>
             <Text>You clicked {thisLatitude} times.</Text>
-            <View>{locateCurrentPos()}</View>
+            <View>{componentWillMount()}</View>
             
 				
             <MapView 
