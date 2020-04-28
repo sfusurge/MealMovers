@@ -8,7 +8,7 @@ import * as Permissions from 'expo-permissions';
 export default function Map({navigation}) { 
     const [thisLatitude, setLatitude] = useState(0)
     const [thisLongitude, setLongitude] = useState(0)
-    //const [status, setStatus] = useState(null)
+    const [status, setStatus] = useState(null)
     //const [errorMsg, setErrorMessage] = useState(null)
 
     // requestLocationPermission = async () => {
@@ -22,16 +22,24 @@ export default function Map({navigation}) {
     // }
 
     const componentWillMount = () => {
-        requestLocationPermission()
+        try{
+            requestLocationPermission()
+        }
+        catch{
+            console.log("caught exception")
+            
+        }
     }
     async function requestLocationPermission() {  
         const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION)
     
         if (status === 'granted'){
+            console.log("worked")
             return locateCurrentPos()
         }
         else{
-            throw new Error('Location permission not granted')
+            //throw new Error('Location permission not granted')
+            Linking.openURL('app-settings:')
         }    
 
     }
