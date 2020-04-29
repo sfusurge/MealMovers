@@ -3,6 +3,7 @@ import React, { Component, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps'
 import * as Permissions from 'expo-permissions';
+import MapViewDirections from 'react-native-maps-directions';
 
 
 export default function Map({navigation}) { 
@@ -10,6 +11,10 @@ export default function Map({navigation}) {
     const [thisLongitude, setLongitude] = useState(0)
     const [status, setStatus] = useState(null)
     const [modalVisible, setModalVisible] = useState(false);
+
+    const origin = {latitude: 49.278094, longitude: -122.919883}
+    //const destination = {latitude: 24, longitude: -122.95259854497922};
+    const GOOGLE_MAPS_APIKEY = 'AIzaSyBpFag3WoUi3-GvDBHspuczDDElH8JEIEQ';
 
     const componentWillMount = () => {
         try{
@@ -20,6 +25,7 @@ export default function Map({navigation}) {
             
         }
     }
+
     async function requestLocationPermission() {  
         const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION)
     
@@ -37,22 +43,22 @@ export default function Map({navigation}) {
     
     const triggerSettings = () => {
         if (modalVisible){
-            setModalVisible(false)
+            
             Linking.openURL('app-settings:')
+            setModalVisible(false)
         }
     }
 
     const locateCurrentPos = () => {
         navigator.geolocation.getCurrentPosition(
             position => {
-                //console.log("Check this statement")
-                //console.log(JSON.stringify(position))
-                
+                console.log(thisLatitude)
+                console.log(thisLongitude)
                 const newLatitude = position.coords.latitude
                 const newLongitude = position.coords.longitude
-                setLatitude(newLatitude)
                 setLongitude(newLongitude)
-             
+                setLatitude(newLatitude)
+                
             }   
         )
     }
@@ -107,6 +113,11 @@ export default function Map({navigation}) {
                 </Callout>
 
                 </Marker>
+                <MapViewDirections
+                    origin={origin}
+                    destination={{latitude: thisLatitude, longitude: thisLongitude}}
+                    apikey={GOOGLE_MAPS_APIKEY}
+                />
             </MapView>
         </View>
        
