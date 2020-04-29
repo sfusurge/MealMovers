@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform, Button, Linking  } from 'react-native'
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Dimensions, Platform, Button, Linking, Modal, TouchableHighlight  } from 'react-native'
 import React, { Component, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps'
@@ -9,17 +9,7 @@ export default function Map({navigation}) {
     const [thisLatitude, setLatitude] = useState(0)
     const [thisLongitude, setLongitude] = useState(0)
     const [status, setStatus] = useState(null)
-    //const [errorMsg, setErrorMessage] = useState(null)
-
-    // requestLocationPermission = async () => {
-    //     if (Platform.OS === 'ios'){
-    //         var response = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
-    //         console.log('Iphone' + response)
-    //     }
-    //     if (response === 'granted'){
-    //         locateCurrentPos();
-    //     } 
-    // }
+    const [modalVisible, setModalVisible] = useState(false);
 
     const componentWillMount = () => {
         try{
@@ -38,21 +28,28 @@ export default function Map({navigation}) {
             return locateCurrentPos()
         }
         else{
+            console.log("failed")
             //throw new Error('Location permission not granted')
-            Linking.openURL('app-settings:')
+            setModalVisible(true);
         }    
 
+    }
+    
+    const triggerSettings = () => {
+        if (modalVisible){
+            setModalVisible(false)
+            Linking.openURL('app-settings:')
+        }
     }
 
     const locateCurrentPos = () => {
         navigator.geolocation.getCurrentPosition(
             position => {
-                console.log("Check this statement")
+                //console.log("Check this statement")
                 //console.log(JSON.stringify(position))
                 
                 const newLatitude = position.coords.latitude
                 const newLongitude = position.coords.longitude
-                console.log(thisLatitude)
                 setLatitude(newLatitude)
                 setLongitude(newLongitude)
              
@@ -60,19 +57,35 @@ export default function Map({navigation}) {
         )
     }
 
-
-
-
     return(
     
         <View style={styles.container}>
             <Text>You clicked {thisLatitude} times.</Text>
             <View>{componentWillMount()}</View>
             
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={modalVisible}
+                onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                }}>
+                <View style={{
+                    flex: 1,
+                    backgroundColor: 'white',
+                    alignItems: 'center',
+                    justifyContent: 'center'}}>
+                <View>
+                    <Text>    You do not have location services enabled!</Text>
+                    <Button onPress = {()=> triggerSettings()}
+                    title = "Enable Location Services in Settings"/>
+
+                </View>
+                </View>
+            </Modal>
 				
             <MapView 
-            provider = {PROVIDER_GOOGLE} 
-            //ref = {map=> _map = map}
+            provider = {PROVIDER_GOOGLE}
             showsUserLocation = {true}
             style = {styles.mapStyle}
             region = {{
