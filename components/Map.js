@@ -11,6 +11,9 @@ export default function Map({navigation}) {
     const [thisLongitude, setLongitude] = useState(0)
     const [status, setStatus] = useState(null)
     const [modalVisible, setModalVisible] = useState(false);
+    const [minutes, setMinutes] = useState(0);
+    const [distance, setDistance] = useState(0);
+    
 
     const origin = {latitude: 49.278094, longitude: -122.919883}
     //const destination = {latitude: 24, longitude: -122.95259854497922};
@@ -67,6 +70,8 @@ export default function Map({navigation}) {
     
         <View style={styles.container}>
             <Text>You clicked {thisLatitude} times.</Text>
+            <Text>Approx. distance is {distance} km</Text>
+            <Text>Approx. travel time to get food is {minutes} minutes</Text>
             <View>{componentWillMount()}</View>
             
             <Modal
@@ -117,6 +122,16 @@ export default function Map({navigation}) {
                     origin={origin}
                     destination={{latitude: thisLatitude, longitude: thisLongitude}}
                     apikey={GOOGLE_MAPS_APIKEY}
+
+                    onReady={result => {
+                            console.log(`Distance: ${result.distance} km`)
+                            console.log(`Duration: ${result.duration} min.`)
+                            const mins = result.duration
+                            const dist = result.distance
+                            setMinutes(mins);
+                            setDistance(dist);
+                        }
+                    }
                 />
             </MapView>
         </View>
