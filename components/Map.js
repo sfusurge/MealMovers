@@ -72,7 +72,6 @@ export default function Map({navigation}) {
     
         <View style={styles.container}>
             <View>{componentWillMount()}</View>
-            <Text>You clicked {thisLatitude} times.</Text>
             <Text>Approx. distance is {distance} km</Text>
             <Text>Approx. travel time to get food is {minutes} minutes </Text>
             
