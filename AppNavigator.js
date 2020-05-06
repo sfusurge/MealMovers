@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Onboard from './components/Onboard';
 import Map from './components/Map';
 import { Text, View } from 'react-native';
-import App from './App';
+
 
 //import SignUp from 'SignUp'
 
@@ -20,6 +20,9 @@ export default function AppNavigator(){
       <AppStack.Navigator>
         <AppStack.Screen name = "Login" component = {Login}/>
         <AppStack.Screen name = "SignUp" component = {SignUp}/>
+        <AppStack.Screen name = "Nav" component = {Nav}/>
+        <AppStack.Screen name = "Map" component = {Map}/>
+        <AppStack.Screen name = "ConfirmEmail" component = {ConfirmEmail}/>
       </AppStack.Navigator>
     </NavigationContainer>
   )
