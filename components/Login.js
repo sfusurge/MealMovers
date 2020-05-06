@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 export default function Login({navigation}){
     var passwordinput = {};
     return (
-        
       <KeyboardAvoidingView behavior = "padding" style={styles.container}>
           <View style = {styles.logoContainer}>
               <Image
@@ -39,7 +38,7 @@ export default function Login({navigation}){
 
                 <View style = {styles.signUpBox}>
                 <Text style = {styles.signUps}> Don't have an Account. </Text>
-                <TouchableOpacity onPress={()=> {navigation.navigate('SignUp')}}><Text> Sign Up Here!</Text>
+                <TouchableOpacity onPress={()=> {navigation.push('SignUp')}}><Text> Sign Up Here!</Text>
                 </TouchableOpacity>
                 </View>
                        
