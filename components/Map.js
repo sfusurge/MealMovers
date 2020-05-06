@@ -122,6 +122,8 @@ export default function Map({navigation}) {
                     origin={origin}
                     destination={{latitude: thisLatitude, longitude: thisLongitude}}
                     apikey={GOOGLE_MAPS_APIKEY}
+                    strokeWidth={3}
+                    strokeColor="blue"
 
                     onReady={result => {
                             console.log(`Distance: ${result.distance} km`)
