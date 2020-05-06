@@ -7,8 +7,8 @@ import MapViewDirections from 'react-native-maps-directions';
 
 
 export default function Map({navigation}) { 
-    const [thisLatitude, setLatitude] = useState(0)
-    const [thisLongitude, setLongitude] = useState(0)
+    const [thisLatitude, setLatitude] = useState()
+    const [thisLongitude, setLongitude] = useState()
     const [status, setStatus] = useState(null)
     const [modalVisible, setModalVisible] = useState(false);
     const [minutes, setMinutes] = useState(0);
@@ -16,9 +16,12 @@ export default function Map({navigation}) {
     
 
     const origin = {latitude: 49.278094, longitude: -122.919883}
-    //const destination = {latitude: 24, longitude: -122.95259854497922};
     const GOOGLE_MAPS_APIKEY = 'AIzaSyBpFag3WoUi3-GvDBHspuczDDElH8JEIEQ';
 
+    const printthings = () => {
+        console.log(thisLatitude);
+        console.log(thisLongitude);
+    }
     const componentWillMount = () => {
         try{
             requestLocationPermission()
@@ -59,9 +62,8 @@ export default function Map({navigation}) {
                 console.log(thisLongitude)
                 const newLatitude = position.coords.latitude
                 const newLongitude = position.coords.longitude
-                setLongitude(newLongitude)
                 setLatitude(newLatitude)
-                
+                setLongitude(newLongitude)   
             }   
         )
     }
@@ -69,10 +71,10 @@ export default function Map({navigation}) {
     return(
     
         <View style={styles.container}>
+            <View>{componentWillMount()}</View>
             <Text>You clicked {thisLatitude} times.</Text>
             <Text>Approx. distance is {distance} km</Text>
-            <Text>Approx. travel time to get food is {minutes} minutes</Text>
-            <View>{componentWillMount()}</View>
+            <Text>Approx. travel time to get food is {minutes} minutes </Text>
             
             <Modal
                 animationType="slide"
@@ -88,18 +90,21 @@ export default function Map({navigation}) {
                     justifyContent: 'center'}}>
                 <View>
                     <Text>    You do not have location services enabled!</Text>
-                    <Button onPress = {()=> triggerSettings()}
+                    <Button onPress = {()=> triggerSettings()
+}
                     title = "Enable Location Services in Settings"/>
 
                 </View>
                 </View>
             </Modal>
+            
 				
             <MapView 
             provider = {PROVIDER_GOOGLE}
             showsUserLocation = {true}
             style = {styles.mapStyle}
             region = {{
+                
                 latitude: thisLatitude,
                 longitude: thisLongitude,
                 latitudeDelta: 0.09,
@@ -124,10 +129,7 @@ export default function Map({navigation}) {
                     apikey={GOOGLE_MAPS_APIKEY}
                     strokeWidth={3}
                     strokeColor="blue"
-
                     onReady={result => {
-                            console.log(`Distance: ${result.distance} km`)
-                            console.log(`Duration: ${result.duration} min.`)
                             const mins = result.duration
                             const dist = result.distance
                             setMinutes(mins);
@@ -136,6 +138,8 @@ export default function Map({navigation}) {
                     }
                 />
             </MapView>
+            <View>{componentWillMount()}</View>
+            <View>{printthings()}</View>
         </View>
        
     )

@@ -17,7 +17,7 @@ function HomeScreen({navigation}) {
         *LOGO*
       </Text>
       <TouchableOpacity onPress={()=> {navigation.push("Map")}}>
-        <Text>
+        <Text style={Styles.logo}>
           Go to the Map
         </Text>
       </TouchableOpacity>
