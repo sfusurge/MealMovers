@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export function FoodRequested({navigation}) {
     return (
-        <View>
+        <View style={Styles.container}>
             <View>
                 <Image
                     source={require('../assets/orderConfirmed.png')}

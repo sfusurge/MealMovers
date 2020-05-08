@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export function RequestDelivery() {
     return (
-        <View>
+        <View style={Styles.container}>
             <Text style={Styles.requestText}>
                 Next Delivery:
             </Text>

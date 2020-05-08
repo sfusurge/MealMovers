@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default StyleSheet.create({
     container: {
@@ -29,6 +30,7 @@ export default StyleSheet.create({
       marginTop: 20,
     },
     orderConfirmedImage: {
+      marginTop: 20,
       alignSelf: 'center'
     },
     contactInfo: {

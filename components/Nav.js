@@ -16,7 +16,7 @@ import { FoodRequested } from './FoodRequested.js';
 const Tab = createBottomTabNavigator();
 
 export default function Nav() {
-    const [requested, setRequested] = React.useState(0);
+    const [requested, setRequested] = React.useState(1);
     return (
         <Tab.Navigator initialRouteName="Home">
           <Tab.Screen name="Contact" component={ContactScreen} />
