@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Styles from '../Styles.js';
 import { ContactScreen } from './Contact.js';
 import { ProfileScreen } from './Profile.js';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 // Modified from https://reactnavigation.org/docs/tab-based-navigation
 
@@ -16,11 +16,6 @@ function HomeScreen({navigation}) {
       <Text style={Styles.logo}>
         *LOGO*
       </Text>
-      <TouchableOpacity onPress={()=> {navigation.push("Map")}}>
-        <Text style={Styles.logo}>
-          Go to the Map
-        </Text>
-      </TouchableOpacity>
     </View>
   );
 }
