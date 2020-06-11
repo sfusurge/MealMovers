@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { KeyboardAvoidingView, Image, StyleSheet, View, TextInput, TouchableOpacity, Text, Navigitor} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Actions } from 'react-native-router-flux';
 
 export default function SignUp({navigation}){
-    var emailInput = "" 
-    var passwordInput = ""
-    var addressInput = ""
-    var numberInput = ""
-    var passwordInput = ""
-    var confirmPasswordInput = ""
-    const [email, setEmail] = useState()
-    const[password, setPassword] = useState()
 
-    const saveUserInfo = (emailInput, passwordInput) => {
-        setEmail(emailInput)
-        setPassword(passwordInput)
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [address, setAddress] = useState()
+    const [phonenumber, setPhonenumber] = useState()
+    const [password, setPassword] = useState()
+    const [confirmPassword, setConfirmPassword] = useState()
+
+    const createUser = () => {
+        // Firebase stuff!
+        console.log(name)
         console.log(email)
+        console.log(address)
+        console.log(phonenumber)
         console.log(password)
+        console.log(confirmPassword)
     }
     
     return (
@@ -40,8 +42,9 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Name of Organization"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> emailInput.focus()}
+                            onSubmitEditing = {()=> email.focus()}
                             keyboardType = "email-address"
+                            onChangeText = {text => setName(text)}
                             style = {styles.input}
                             autoCapitalize = "none"
                             autoCorrect = {false}
@@ -51,8 +54,9 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "E-mail"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> numberInput.focus()}
-                            ref={((input) => emailInput = input)}
+                            onSubmitEditing = {()=> phonenumber.focus()}
+                            onChangeText = {text => setEmail(text)}
+                            // ref={((input) => email)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -64,7 +68,8 @@ export default function SignUp({navigation}){
                             placeholder = "Phone number"
                             returnKeyType = "next"
                             onSubmitEditing = {()=> addressInput.focus()}
-                            ref={((input) => numberInput = input)}
+                            // ref={((input) => phonenumber)}
+                            onChangeText = {text => setPhonenumber(text)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -75,7 +80,7 @@ export default function SignUp({navigation}){
                             placeholder = "Address"
                             returnKeyType = "next"
                             onSubmitEditing = {()=> passwordInput.focus()}
-                            ref={((input) => addressInput = input)}
+                            onChangeText = {text => setAddress(text)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -87,9 +92,8 @@ export default function SignUp({navigation}){
                         returnKeyType = "next"
                         secureTextEntry
                         onSubmitEditing = {()=> confirmPasswordInput.focus()}
-                        ref={((input) => passwordInput = input)}
+                        onChangeText = {text => setPassword(text)}
                         style = {styles.input}
-                        
                         
                     /> 
 
@@ -98,10 +102,10 @@ export default function SignUp({navigation}){
                         returnKeyType = "go"
                         secureTextEntry
                         style = {styles.input}
-                        ref={((input) => confirmPasswordInput = input)}
+                        onChangeText = {text => setConfirmPassword(text)}
                     />   
                     
-                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {saveUserInfo()}}>
+                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {createUser()}}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
     
