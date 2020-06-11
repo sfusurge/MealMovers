@@ -10,6 +10,15 @@ export default function SignUp({navigation}){
     var numberInput = ""
     var passwordInput = ""
     var confirmPasswordInput = ""
+    const [email, setEmail] = useState()
+    const[password, setPassword] = useState()
+
+    const saveUserInfo = (emailInput, passwordInput) => {
+        setEmail(emailInput)
+        setPassword(passwordInput)
+        console.log(email)
+        console.log(password)
+    }
     
     return (
         <KeyboardAwareScrollView
@@ -92,7 +101,7 @@ export default function SignUp({navigation}){
                         ref={((input) => confirmPasswordInput = input)}
                     />   
                     
-                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {navigation.navigate('Onboard')}}>
+                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {saveUserInfo()}}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
     
