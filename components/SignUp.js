@@ -42,7 +42,7 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Name of Organization"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> email.focus()}
+                            onSubmitEditing = {()=> {this.secondTextInput.focus();}}
                             keyboardType = "email-address"
                             onChangeText = {text => setName(text)}
                             style = {styles.input}
@@ -54,9 +54,9 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "E-mail"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> phonenumber.focus()}
+                            ref={(input) => {this.secondTextInput = input;}}
+                            onSubmitEditing = {()=> thirdTextInput.focus()}
                             onChangeText = {text => setEmail(text)}
-                            // ref={((input) => email)}
                             keyboardType = "email-address"
                             style = {styles.input}
                             autoCapitalize = "none"
@@ -67,8 +67,8 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Phone number"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> addressInput.focus()}
-                            // ref={((input) => phonenumber)}
+                            ref={(input) => {this.thirdTextInput = input;}}
+                            onSubmitEditing = {()=> fourthTextInput.focus()}
                             onChangeText = {text => setPhonenumber(text)}
                             keyboardType = "email-address"
                             style = {styles.input}
@@ -79,7 +79,8 @@ export default function SignUp({navigation}){
                         <TextInput
                             placeholder = "Address"
                             returnKeyType = "next"
-                            onSubmitEditing = {()=> passwordInput.focus()}
+                            ref={(input) => {this.fourthTextInput = input;}}
+                            onSubmitEditing = {()=> fifthTextInput.focus()}
                             onChangeText = {text => setAddress(text)}
                             keyboardType = "email-address"
                             style = {styles.input}
@@ -90,8 +91,9 @@ export default function SignUp({navigation}){
                     <TextInput
                         placeholder = "Password"
                         returnKeyType = "next"
+                        ref={(input) => {this.fifthTextInput = input;}}
                         secureTextEntry
-                        onSubmitEditing = {()=> confirmPasswordInput.focus()}
+                        onSubmitEditing = {()=> sixthTextInput.focus()}
                         onChangeText = {text => setPassword(text)}
                         style = {styles.input}
                         
@@ -100,6 +102,7 @@ export default function SignUp({navigation}){
                     <TextInput
                         placeholder = "Confirm Password"
                         returnKeyType = "go"
+                        ref={(input) => {this.sixthTextInput = input;}}
                         secureTextEntry
                         style = {styles.input}
                         onChangeText = {text => setConfirmPassword(text)}
