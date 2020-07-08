@@ -31,11 +31,16 @@ export default function SignUp({navigation}){
     // const [errorMessage, setErrorMessage] = useState()
 
     const createUser = ({navigation}) => {
-        // firebase
-        //     .auth()
-        //     .createUserWithEmailAndPassword(email, password)
-        //     .then(() => navigation.navigate('Login'))
-        // Firebase stuff!
+        if(password == confirmPassword) {
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(email, password)
+                .then(() => navigation.navigate('Login'))
+        }
+        else {
+            console.log("Passwords don't match!")
+        }
+        
         console.log(name)
         console.log(email)
         console.log(address)
