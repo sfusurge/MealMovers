@@ -2,8 +2,25 @@ import React, { Component, useState } from 'react';
 import { KeyboardAvoidingView, Image, StyleSheet, View, TextInput, TouchableOpacity, Text, Navigitor} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Actions } from 'react-native-router-flux';
+import * as firebase from 'firebase';
 
 export default function SignUp({navigation}){
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAzp_vpPlvxYoOsZVlnxVJe4ywvuzAADXI",
+        authDomain: "mealmovers-7acea.firebaseapp.com",
+        databaseURL: "https://mealmovers-7acea.firebaseio.com",
+        projectId: "mealmovers-7acea",
+        storageBucket: "mealmovers-7acea.appspot.com",
+        messagingSenderId: "81825855785",
+        appId: "1:81825855785:web:ccadf687ab8c0817d6df38",
+        measurementId: "G-5F5MNEGHFX"
+      };
+      // Initialize Firebase
+      if(!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      
 
     const [name, setName] = useState()
     const [email, setEmail] = useState()
@@ -11,8 +28,13 @@ export default function SignUp({navigation}){
     const [phonenumber, setPhonenumber] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassword] = useState()
+    // const [errorMessage, setErrorMessage] = useState()
 
-    const createUser = () => {
+    const createUser = ({navigation}) => {
+        // firebase
+        //     .auth()
+        //     .createUserWithEmailAndPassword(email, password)
+        //     .then(() => navigation.navigate('Login'))
         // Firebase stuff!
         console.log(name)
         console.log(email)
@@ -108,7 +130,7 @@ export default function SignUp({navigation}){
                         onChangeText = {text => setConfirmPassword(text)}
                     />   
                     
-                    <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {createUser()}}>
+                    <TouchableOpacity style = {styles.buttonContainer} onPress={() => createUser({navigation})}>
                         <Text style = {styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
     
