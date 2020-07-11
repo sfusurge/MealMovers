@@ -1,10 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput  } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
+import * as firebase from 'firebase';
 
 export default function Login({navigation}){
-    var passwordinput = {};
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const [errorMsg, setErrorMsg] = useState()
+
+    const loginUser = ({navigation}) => {
+        console.log(email)
+        console.log(password)
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then(() => navigation.navigate('Nav'))
+            .catch(() => setErrorMsg("Password or user doesn't exists"))
+    }
+
     return (
       <KeyboardAvoidingView behavior = "padding" style={styles.container}>
           <View style = {styles.logoContainer}>
@@ -15,24 +28,29 @@ export default function Login({navigation}){
           </View>
           <View style = {styles.formContainer}>
             <View style={styles.loginContainer}>
-            <TextInput
-                placeholder = "username or email"
-                returnKeyType = "next"
-                onSubmitEditing = {()=> passwordinput.focus()}
-                keyboardType = "email-address"
-                style = {styles.input}
-                autoCapitalize = "none"
-                autoCorrect = {false}
-                />
-                
                 <TextInput
-                placeholder = "password"
-                returnKeyType = "go"
-                secureTextEntry
-                style = {styles.input}
-                ref={((input) => passwordinput = input)}
-                />   
-                <TouchableOpacity style = {styles.buttonContainer} onPress={()=> {navigation.navigate('Nav')}}>
+                    placeholder = "E-mail"
+                    returnKeyType = "next"
+                    ref={(input) => {secondTextInput = input;}}
+                    onSubmitEditing = {()=> thirdTextInput.focus()}
+                    onChangeText = {text => setEmail(text)}
+                    keyboardType = "email-address"
+                    style = {styles.input}
+                    autoCapitalize = "none"
+                    autoCorrect = {false}
+                />
+
+                <TextInput
+                    placeholder = "Password"
+                    returnKeyType = "go"
+                    ref={(input) => {thirdTextInput = input;}}
+                    secureTextEntry
+                    style = {styles.input}
+                    onChangeText = {text => setPassword(text)}
+                />  
+                
+                
+                <TouchableOpacity style = {styles.buttonContainer} onPress={()=> loginUser({navigation})}>
                     <Text style = {styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity>
 
