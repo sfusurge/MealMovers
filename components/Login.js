@@ -1,22 +1,45 @@
 import React, { Component, useState } from 'react';
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput  } from 'react-native';
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Animated  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as firebase from 'firebase';
 
 export default function Login({navigation}){
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [errorMsg, setErrorMsg] = useState()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [errorMsg, setErrorMsg] = useState("")
+    var shakeAnimation = new Animated.Value(0);
 
     const loginUser = ({navigation}) => {
         console.log(email)
         console.log(password)
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then(() => navigation.navigate('Nav'))
-            .catch(() => setErrorMsg("Password or user doesn't exists"))
+        if (email == "" && password == ""){
+            startShake()
+            setErrorMsg("Please enter username and password")
+            
+        }
+        else{
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    navigation.navigate('Nav'),
+                    setErrorMsg("")})
+                .catch(() => {
+                    startShake();
+                    setErrorMsg("Password or user doesn't exist\n Please try again");
+                    
+                })
+        }
     }
+
+    const startShake = () => {
+        Animated.sequence([
+          Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+          Animated.timing(shakeAnimation, { toValue: -10, duration: 100, useNativeDriver: true }),
+          Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+          Animated.timing(shakeAnimation, { toValue: 0, duration: 100, useNativeDriver: true })
+        ]).start();
+     }
 
     return (
       <KeyboardAvoidingView behavior = "padding" style={styles.container}>
@@ -59,9 +82,13 @@ export default function Login({navigation}){
                 <TouchableOpacity onPress={()=> {navigation.push('SignUp')}}><Text> Sign Up Here!</Text>
                 </TouchableOpacity>
                 </View>
-                       
+                <Animated.View style={{ transform: [{translateX: shakeAnimation}] }}>  
+                    <Text style = {styles.error}>{errorMsg}</Text>
+                </Animated.View>
+                
             </View>
           </View>
+          
           
       </KeyboardAvoidingView>
     );
@@ -125,6 +152,10 @@ const styles = StyleSheet.create({
       color: '#000000',
       fontSize: 16,
       fontWeight: "500"
+    },
+    error:{
+        color: '#FF5959',
+        textAlign : "center"
     }
 })
 

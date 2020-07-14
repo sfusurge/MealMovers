@@ -7,8 +7,6 @@ import * as firebase from 'firebase';
 
 export default function SignUp({navigation}){
 
-    
-
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [address, setAddress] = useState()
@@ -40,6 +38,7 @@ export default function SignUp({navigation}){
         <KeyboardAwareScrollView
         style={{ backgroundColor: '#4c69a5' }}
         resetScrollToCoords={{ x: 0, y: 0 }}
+        extraHeight = {20}
         contentContainerStyle={styles.container}
         scrollEnabled={true}
         >
@@ -53,54 +52,53 @@ export default function SignUp({navigation}){
               <View style={styles.signUpContainer}>
                     
                         
-                        <TextInput
-                            placeholder = "Name of Organization"
-                            returnKeyType = "next"
-                            onSubmitEditing = {()=> {secondTextInput.focus();}}
-                            keyboardType = "email-address"
-                            onChangeText = {text => setName(text)}
-                            style = {styles.input}
-                            autoCapitalize = "none"
-                            autoCorrect = {false}
-                            />
+                    <TextInput
+                        placeholder = "Name of Organization"
+                        returnKeyType = "next"
+                        onSubmitEditing = {()=> {secondTextInput.focus();}}
+                        keyboardType = "email-address"
+                        onChangeText = {text => setName(text)}
+                        style = {styles.input}
+                        autoCapitalize = "none"
+                        autoCorrect = {false}
+                        />
                    
                     
-                        <TextInput
-                            placeholder = "E-mail"
-                            returnKeyType = "next"
-                            ref={(input) => {secondTextInput = input;}}
-                            onSubmitEditing = {()=> thirdTextInput.focus()}
-                            onChangeText = {text => setEmail(text)}
-                            keyboardType = "email-address"
-                            style = {styles.input}
-                            autoCapitalize = "none"
-                            autoCorrect = {false}
-                            />
-                   
+                    <TextInput
+                        placeholder = "E-mail"
+                        returnKeyType = "next"
+                        ref={(input) => {secondTextInput = input;}}
+                        onSubmitEditing = {()=> thirdTextInput.focus()}
+                        onChangeText = {text => setEmail(text)}
+                        keyboardType = "email-address"
+                        style = {styles.input}
+                        autoCapitalize = "none"
+                        autoCorrect = {false}
+                        />
+               
                     
-                        <TextInput
-                            placeholder = "Phone number"
-                            returnKeyType = "next"
-                            ref={(input) => {thirdTextInput = input;}}
-                            onSubmitEditing = {()=> fourthTextInput.focus()}
-                            onChangeText = {text => setPhonenumber(text)}
-                            keyboardType = "email-address"
-                            style = {styles.input}
-                            autoCapitalize = "none"
-                            autoCorrect = {false}
-                            />
+                    <TextInput
+                        placeholder = "Phone number"
+                        returnKeyType = "next"
+                        ref={(input) => {thirdTextInput = input;}}
+                        onSubmitEditing = {()=> fourthTextInput.focus()}
+                        onChangeText = {text => setPhonenumber(text)}
+                        keyboardType = "email-address"
+                        style = {styles.input}
+                        autoCapitalize = "none"
+                        autoCorrect = {false}
+                        />
  
-                        <TextInput
-                            placeholder = "Address"
-                            returnKeyType = "next"
-                            ref={(input) => {fourthTextInput = input;}}
-                            onSubmitEditing = {()=> fifthTextInput.focus()}
-                            onChangeText = {text => setAddress(text)}
-                            keyboardType = "email-address"
-                            style = {styles.input}
-                            autoCapitalize = "none"
-                            autoCorrect = {false}
-                            />
+                    <TextInput
+                        placeholder = "Address"
+                        returnKeyType = "next"
+                        ref={(input) => {fourthTextInput = input;}}
+                        onSubmitEditing = {()=> fifthTextInput.focus()}
+                        onChangeText = {text => setAddress(text)}
+                        style = {styles.input}
+                        autoCapitalize = "none"
+                        autoCorrect = {false}
+                        />
                   
                     <TextInput
                         placeholder = "Password"
