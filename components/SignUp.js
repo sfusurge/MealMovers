@@ -16,7 +16,9 @@ export default function SignUp({navigation}){
     // const [errorMessage, setErrorMessage] = useState()
 
     const createUser = ({navigation}) => {
+
         if(password == confirmPassword) {
+            saveInfo()
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password)
@@ -25,15 +27,18 @@ export default function SignUp({navigation}){
         else {
             console.log("Passwords don't match!")
         }
-        
-        console.log(name)
-        console.log(email)
-        console.log(address)
-        console.log(phonenumber)
-        console.log(password)
-        console.log(confirmPassword)
     }
     
+    const saveInfo = () =>{
+        firebase.database().ref('users/' + name).set({
+            username: name,
+            userEmail: email,
+            userAddress: address,
+            userPhoneNum: phonenumber,
+            userPassword: password
+        });
+    }
+
     return (
         <KeyboardAwareScrollView
         style={{ backgroundColor: '#4c69a5' }}
