@@ -16,17 +16,26 @@ export default function SignUp({navigation}){
     // const [errorMessage, setErrorMessage] = useState()
 
     const createUser = ({navigation}) => {
-
         if(password == confirmPassword) {
             saveInfo()
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password)
-                .then(() => navigation.navigate('Login'))
+                .then(() => {
+                    checkUser()
+                    navigation.navigate('Login')
+                })
+            
+            
         }
         else {
             console.log("Passwords don't match!")
         }
+    }
+
+    const checkUser = () => {
+        var user = firebase.auth().currentUser
+        user.sendEmailVerification()
     }
     
     const saveInfo = () =>{
