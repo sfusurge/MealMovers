@@ -22,6 +22,7 @@ export default function Map({navigation}) {
         console.log(thisLatitude);
         console.log(thisLongitude);
     }
+    
     const componentWillMount = () => {
         try{
             requestLocationPermission()

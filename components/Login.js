@@ -15,8 +15,10 @@ export default function Login({navigation}){
         if (email == "" && password == ""){
             startShake()
             setErrorMsg("Please enter username and password")
-            
         }
+        // else if (!userVerified()){
+        //     setErrorMsg("Account is not Verified")
+        // }
         else{
             firebase
                 .auth()
@@ -31,6 +33,15 @@ export default function Login({navigation}){
                 })
         }
     }
+    // const userVerified = () =>{
+    //     var user = firebase.auth().currentUser
+    //     if (user != null){
+    //         console.log(user.displayName)
+    //         emailVerified = user.emailVerified
+    //         return emailVerified
+    //     } 
+    //     console.log("Did not Entered")
+    // }
 
     const startShake = () => {
         Animated.sequence([

@@ -33,12 +33,20 @@ export default function SignUp({navigation}){
         }
     }
 
+
+
     const checkUser = () => {
         var user = firebase.auth().currentUser
-        user.sendEmailVerification()
+        user.updateProfile({
+            displayName: name
+        }).then(function() {
+            user.sendEmailVerification()
+        }).catch(function(error) {
+            // An error happened.
+        });
     }
     
-    const saveInfo = () =>{
+    const saveInfo = () => {
         firebase.database().ref('users/' + name).set({
             username: name,
             userEmail: email,
