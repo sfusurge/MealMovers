@@ -7,6 +7,8 @@ import * as firebase from 'firebase';
 export function ProfileScreen() {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
+    const [address, setAddress] = useState("")
+    const [number, setNumber] = useState("")
     const [flag, setFlag] = useState(1)
     const [flag1, setFlag1] = useState(1)
     
@@ -38,7 +40,10 @@ export function ProfileScreen() {
             ref.orderByChild("username").equalTo(user.displayName).on("child_added", function(data) {
                     console.log(data.val().userEmail);
                     setEmail(data.val().userEmail)
+                    setNumber(data.val().userPhoneNum)
+                    setAddress(data.val().userAddress)
             });
+
             return
         }
     }
@@ -54,7 +59,13 @@ export function ProfileScreen() {
                 <Text>Username: {name}</Text>
             </View>
             <View>
-                <Text>UserEmail: {email} </Text>
+                <Text>Email: {email} </Text>
+            </View>
+            <View>
+                <Text>PhoneNumber: {number} </Text>
+            </View>
+            <View>
+                <Text>Address: {address} </Text>
             </View>
         </View>
         
